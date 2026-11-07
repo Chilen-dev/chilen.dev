@@ -1,0 +1,78 @@
+<div
+  id="header-spacer"
+  aria-hidden="true"
+  style="background: var(--surface);"
+>
+</div>
+
+<header id="site-header">
+  <style>
+    #site-header {
+      box-sizing: border-box;
+      padding-top: calc({{ layout.header_float_offset }}px + var(--spacing-regular));
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding-inline: 15%;
+      transition: padding-inline 150ms ease;
+    }
+
+    #site-header.is-fixed {
+      padding-top: var(--spacing-regular);
+      position: fixed;
+      padding-inline: var(--spacing-large);
+    }
+  </style>
+
+  <nav id="header-nav">
+    <style>
+      #header-nav {
+        height: 60px;
+      }
+
+      #site-header.is-fixed #header-nav {
+        height: 80px;
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;    
+      transition: height 150ms ease;
+    </style>
+
+    <div id="header-content">
+      <style>
+        #header-content {
+          align: center;
+          background-color: var(--surface-container);
+          width: 100%;
+          height: 100%;
+          border-radius: 9999px;
+          box-shadow: 0 1px 4px 0 color-mix(in srgb, var(--shadow) 15%, transparent);
+        }
+      </style>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector("#site-header");
+  const spacer = document.querySelector("#header-spacer");
+  const floatOffset = Number("{{ layout.header_float_offset }}") || 0;
+
+  spacer.style.height = `${header.offsetHeight}px`;
+
+  function updateHeader() {
+    header.classList.toggle("is-fixed", window.scrollY > floatOffset);
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  window.addEventListener("resize", () => {
+    if (!header.classList.contains("is-fixed")) {
+      spacer.style.height = `${header.offsetHeight}px`;
+    }
+  });
+  updateHeader();
+</script>

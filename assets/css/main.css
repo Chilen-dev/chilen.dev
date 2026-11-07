@@ -1,0 +1,66 @@
+:root {
+  --rounding-small: 8px;
+  --rounding-regular: 16px;
+  --rounding-large: 28px;
+  --rounding-larger: 46px;
+
+  --spacing-small: 12px;
+  --spacing-regular: 20px;
+  --spacing-large: 32px;
+  --spacing-larger: 52px;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+@font-face {
+  font-family: GoogleFlex-Medium;
+  src: url("/assets/fonts/NotoSans-Medium.woff");
+}
+
+@font-face {
+  font-family: GoogleFlex-Black;
+  src: url("/assets/fonts/NotoSans-Black.woff");
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100%;
+  font-family: GoogleFlex-Medium;
+  line-height: 1.5;
+  letter-spacing: 0.009375rem;
+  background: var(--surface-container);
+  color: var(--on-surface);
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+}
+
+main {
+  border-radius: 0px 0px var(--rounding-large) var(--rounding-large);
+  background-color: var(--surface);
+  flex: 1;
+}
+
+::selection {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+::-moz-selection {
+  color: var(--surface);
+  background: var(--on-surface);
+}
+
+a:visited {
+  color: var(--tertiary);
+}
+
+h1 {
+  color: var(--on-surface);
+  font-family: GoogleFlex-Black;
+}

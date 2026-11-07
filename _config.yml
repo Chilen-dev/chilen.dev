@@ -1,0 +1,7 @@
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+title: Chilen
+email: tpaau-17db@tutamail.com
+description: >-
+  Fully offline, blazingly fast music player for your library. Built from the ground-up in Rust.
