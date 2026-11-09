@@ -1,10 +1,4 @@
-<div
-  id="header-spacer"
-  aria-hidden="true"
-  style="background: var(--surface);"
->
-</div>
-
+<!-- FIX: Overshoots to the top -->
 <header id="site-header">
   <style>
     #site-header {
@@ -15,7 +9,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      padding-inline: 15%;
+      padding-inline: 10%;
       transition: padding-inline 150ms ease;
     }
 
@@ -24,55 +18,162 @@
       position: fixed;
       padding-inline: var(--spacing-large);
     }
+
+    #site-header a {
+      text-decoration: none;
+      color: inherit;
+      border-radius: 9999px;
+      transition: background-color 100ms ease;
+    }
+
+    #site-header a.active {
+      color: var(--on-secondary-container);
+    }
+
+    #site-header a:hover {
+      background-color: color-mix(
+        in srgb,
+        var(--on-surface) var(--hover-state-layer-opacity),
+        transparent
+      );
+    }
+
+    #site-header a:hover.active {
+      background-color: color-mix(
+        in srgb,
+        var(--on-secondary-container) var(--hover-state-layer-opacity),
+        transparent
+      );
+    }
+
+    #header-nav {
+      z-index: -1;
+      position: relative;
+      height: 60px;
+      display: flex;
+      background-color: var(--surface-container);
+      width: 100%;
+      border-radius: 9999px;
+      box-shadow: 0 1px 4px 0 color-mix(in srgb, var(--shadow) 15%, transparent);
+      overflow-x: auto;
+    }
+
+    #site-header.is-fixed #header-nav {
+      height: 80px;
+    }
+
+    #header-nav .nav-item {
+      position: relative;
+      flex: 1 0 0;
+      display: flex;
+      gap: var(--spacing-small);
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-inline: 16px;
+    }
+
+    #header-nav .nav-item .icon {
+      font-family: IconsOutlined;
+      font-size: var(--icon-size-regular);
+    }
+
+    #header-nav .nav-item.active .icon {
+      font-family: IconsFilled;
+    }
+
+    #header-nav .nav-item .label {
+      font-family: GoogleFlex-Medium;
+    }
+
+    #header-nav .nav-item .active-indicator {
+      position: absolute;
+      height: 100%;
+      border-radius: 9999px;
+      background-color: var(--secondary-container);
+      opacity: 0;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      width: 0%;
+      margin: auto;
+      transition: width 150ms ease, opacity 150ms ease;
+    }
+
+    #header-nav .nav-item.active .active-indicator {
+      width: 100%;
+      opacity: 1;
+    }
+
   </style>
 
   <nav id="header-nav">
-    <style>
-      #header-nav {
-        height: 60px;
-      }
+    <a class="nav-item" href="#home">
+      <div class="active-indicator"></div>
+      <p class="icon">home</p>
+      <p class="label">Home</p>
+    </a>
 
-      #site-header.is-fixed #header-nav {
-        height: 80px;
-      }
+    <a class="nav-item" href="#features">
+      <div class="active-indicator"></div>
+      <p class="icon">stars</p>
+      <p class="label">Features</p>
+    </a>
 
-      display: flex;
-      justify-content: center;
-      align-items: center;    
-      transition: height 150ms ease;
-    </style>
+    <a class="nav-item" href="#download">
+      <div class="active-indicator"></div>
+      <p class="icon">download</p>
+      <p class="label">Download</p>
+    </a>
 
-    <div id="header-content">
-      <style>
-        #header-content {
-          align: center;
-          background-color: var(--surface-container);
-          width: 100%;
-          height: 100%;
-          border-radius: 9999px;
-          box-shadow: 0 1px 4px 0 color-mix(in srgb, var(--shadow) 15%, transparent);
-        }
-      </style>
-    </div>
+    <a class="nav-item" href="#faq">
+      <div class="active-indicator"></div>
+      <p class="icon">help</p>
+      <p class="label">FAQ</p>
+    </a>
   </nav>
 </header>
 
+
 <script>
   const header = document.querySelector("#site-header");
-  const spacer = document.querySelector("#header-spacer");
   const floatOffset = Number("{{ layout.header_float_offset }}") || 0;
 
-  spacer.style.height = `${header.offsetHeight}px`;
+
+  function updateActiveLink() {
+    const links = document.querySelectorAll("#header-nav a");
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash;
+
+    const itemWidthPercent = 100 / links.length;
+
+    links.forEach((link, index) => {
+      const href = link.getAttribute("href");
+      const isActive = (href === currentHash && currentHash !== "") || 
+                      (href === currentPath) || 
+                      (currentHash === "" && href === "/");
+
+      link.classList.toggle("active", isActive);
+    });
+  }
 
   function updateHeader() {
-    header.classList.toggle("is-fixed", window.scrollY > floatOffset);
+    const isFixed = window.scrollY > floatOffset;
+    const wasFixed = header.classList.contains("is-fixed");
+    header.classList.toggle("is-fixed", isFixed);
+
+    if (isFixed !== wasFixed) {
+      updateActiveLink();
+    }
   }
+  updateHeader();
 
   window.addEventListener("scroll", updateHeader, { passive: true });
   window.addEventListener("resize", () => {
-    if (!header.classList.contains("is-fixed")) {
-      spacer.style.height = `${header.offsetHeight}px`;
-    }
+    updateActiveLink();
   });
-  updateHeader();
+
+  window.addEventListener("hashchange", updateActiveLink);
+  window.addEventListener("load", updateActiveLink);
+  updateActiveLink();
 </script>

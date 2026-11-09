@@ -1,12 +1,124 @@
-<footer style="
-  padding: var(--spacing-regular) var(--spacing-larger) var(--spacing-regular) var(--spacing-larger);
-">
-  <nav>
-    <div style="
-      background-color: #ff0000;
+<footer>
+  <style>
+    footer {
+      padding: var(--spacing-large) var(--spacing-larger) 0px var(--spacing-larger);
+    }
+
+    footer nav {
+      display: flex;
+      flex-direction: column;
+      color: var(--on-surface-variant);
+    }
+
+    #footer-top-row {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: var(--spacing-regular);
+      padding-bottom: var(--spacing-regular);
+    }
+
+    #footer-top-row .column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-small);
+    }
+
+    #footer-top-row .column p {
+      margin: 0;
+      margin-bottom: var(--spacing-small);
+      font-size: var(--font-size-small);
+      color: var(--on-surface);
+    }
+
+    #footer-top-row .column a {
+      font-size: var(--font-size-small);
+    }
+
+    #footer-logo-column {
+      display: flex;
+      flex-direction: column;
+      font-family: GoogleFlex-Medium;
+      font-size: var(--font-size-small);
+      gap: var(--spacing-regular);
+      color: var(--on-surface);
+    }
+
+    #footer-logo-column p {
+      margin: 0;
+    }
+
+    #footer-logo {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-small);
+    }
+
+    #footer-logo p {
+      font-family: GoogleFlex-Black;
+      font-size: 1.75rem;
+    }
+
+    #footer-spacer {
+      height: 1px;
       width: 100%;
-      height: 100px;
-    ">
+      background-color: var(--outline-variant);
+      margin-top: var(--spacing-regular);
+    }
+
+    #footer-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      padding-inline: var(--spacing-regular);
+      font-size: var(--font-size-small);
+    }
+
+    #footer-licensing-row {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--spacing-small) / 2);
+    }
+
+    #footer-licensing-row a, #footer-top-row a {
+      color: var(--on-surface);
+    }
+
+    #footer-licensing-row .dot-spacer {
+      width: 4px;
+      height: 4px;
+    }
+  </style>
+
+  <nav>
+    <div id="footer-top-row">
+      <div id="footer-logo-column">
+        <div id="footer-logo">
+          <img alt="Chilen logo" src="/assets/icons/logo.svg" width="50px">
+          <p>Chilen</p>
+        </div>
+        <p>Fully offline music player for your library</p>
+      </div>
+
+      <div class="column">
+        <p>COMMUNITY</p>
+        <a href="{{ site.discord_url }}">Discord Server</a>
+        <a href="{{ site.discord_url }}">Discord Server</a>
+        <a href="{{ site.discord_url }}">Discord Server</a>
+      </div>
+      <div class="column">
+        <p>PROJECT</p>
+        <a href="{{ site.project_github_url }}">GitHub</a>
+        <a href="{{ site.project_github_url }}">GitHub</a>
+        <a href="{{ site.project_github_url }}">GitHub</a>
+      </div>
+    </div>
+    <div id="footer-spacer"></div>
+    <div id="footer-bottom-row">
+      <div id="footer-licensing-row">
+        <p>© 2026 Chilen</p>
+        <div class="dot-spacer"></div>
+        <a href="https://spdx.org/licenses/CC-BY-SA-4.0.html">CC-BY-SA-4.0</a>
+      </div>
+      <p>Built with Rust and Iced</p>
     </div>
   </nav>
 </footer>
