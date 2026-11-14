@@ -1,0 +1,272 @@
+---
+layout: main
+permalink: /
+---
+
+<div id="home">
+  <style>
+    #home > p {
+      color: var(--on-surface-variant);
+      width: 50%;
+    }
+
+    @media (max-width: 1000px) {
+      #home > p {
+        width: 100%;
+      }
+    }
+
+    #home h1 {
+      font-family: GoogleFlex-Regular;
+      letter-spacing: -0.03rem;
+      font-size: 3rem;
+      color: var(--on-surface);
+      margin-bottom: 0;
+    }
+
+    #home h1 em {
+      font-style: normal;
+      letter-spacing: -0.03rem;
+      color: var(--primary);
+    }
+
+    #button-row {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: var(--spacing-small);
+    }
+
+    #img-wrapper {
+      padding: var(--spacing-regular);
+    }
+
+    #home img {
+      margin-top: 1.5rem;
+      width: 100%;
+      border-radius: var(--rounding-regular);
+      box-shadow: 0 3px 7px 0 color-mix(in srgb, var(--shadow) 30%, transparent);
+    }
+  </style>
+
+  <h1>
+    Offline music player
+    <br>for <em>your</em> library.
+  </h1>
+  <p>Chilen streams music directly from your device. No account, no tracking - just you and your tunes!</p>
+
+  <div id="button-row">
+    <button
+      onclick="location.href='#download'"
+      class="medium rounded filled-primary"
+    >
+      <p class="icon filled">download</p>
+      Download
+    </button>
+    <button
+      onclick="location.href='{{ site.project_github_url }}'"
+      class="medium rounded tonal-primary"
+    >
+      <p class="icon filled">code</p>
+      Source Code
+    </button>
+  </div>
+
+  <div id="img-wrapper">
+    <img alt="Screenshot of the home screen of Chilen" src="/assets/screenshots/home.png"><img>
+  </div>
+</div>
+
+<style>
+  .head {
+    margin-top: calc(2.5 * var(--spacing-larger));
+    display: flex;
+    flex-direction: column;
+    margin-botto: var(--spacing-large);
+  }
+
+  .kicker {
+    font-family: GoogleFlex-Medium;
+    font-size: var(--font-size-small);
+    color: var(--tertiary);
+  }
+
+  .head h2 {
+    margin: 0;
+    margin-top: var(--spacing-small);
+  }
+
+  .head p {
+    color: var(--on-surface-variant);
+    font-size: var(--font-size-small);
+  }
+
+  #features-grid {
+    margin-top: var(--spacing-large);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--spacing-regular);
+  }
+
+  .feature-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-regular);
+    padding: var(--spacing-regular);
+    border-radius: var(--rounding-regular);
+    background-color: var(--surface-container-low);
+    box-shadow: 0 3px 7px 0 color-mix(in srgb, var(--shadow) 20%, transparent);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .feature-item .shape-icon {
+    grid-area: icon;
+  }
+
+  .feature-item h3 {
+    grid-area: title;
+  }
+
+  .feature-item > p {
+    grid-area: desc;
+    margin: 0;
+    color: var(--on-surface-variant);
+  }
+
+  .feature-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 9px 0 color-mix(in srgb, var(--shadow) 20%, transparent);
+  }
+
+  .feature-item .top-row {
+    display: flex;
+    align-self: start;
+    gap: var(--spacing-regular);
+    place-items: center;
+  }
+
+  .feature-item .shape-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 5rem;
+    width: 5rem;
+    height: 5rem;
+    container-type: inline-size;
+  }
+
+  .feature-item .shape-icon > * {
+    grid-area: 1 / 1;
+  }
+
+  .feature-item .shape-icon svg {
+    transition: transform 200ms ease;
+    filter: drop-shadow(0 3px 4px color-mix(in srgb, var(--shadow) 10%, transparent));
+    width: 100%;
+    height: 100%;
+  }
+
+  .feature-item:hover .shape-icon svg {
+    transform: rotate(30deg) scale(1.1);
+  }
+
+  .feature-item .shape-icon.primary svg {
+    fill: var(--on-primary);
+  }
+
+  .feature-item .shape-icon.secondary svg {
+    fill: var(--on-secondary);
+  }
+
+  .feature-item .shape-icon.tertiary svg {
+    fill: var(--on-tertiary);
+  }
+
+  .feature-item .shape-icon .icon {
+    z-index: 1;
+    font-size: 50cqi;
+  }
+
+  .feature-item .shape-icon.primary .icon {
+    color: var(--primary);
+  }
+
+  .feature-item .shape-icon.secondary .icon {
+    color: var(--secondary);
+  }
+
+  .feature-item .shape-icon.tertiary .icon {
+    color: var(--tertiary);
+  }
+
+  .feature-item h3, .feature-item p {
+    margin: 0;
+  }
+</style>
+
+<section id="features" class="head">
+  <span class="kicker">FEATURES</span>
+  <h2>What Chilen does</h2>
+  <p>Chilen plays music from audio files on your device.</p>
+
+  <div id="features-grid">
+    <div class="feature-item">
+      <div class="top-row">
+        <div class="shape-icon primary">
+          {% include shapes/cookie7.svg %}
+          <p class="icon filled">cloud_off</p>
+        </div>
+        <h3>Offline</h3>
+      </div>
+      <p>Audio files are played directly off of your device. No connections to external services are made.</p>
+    </div>
+    <div class="feature-item">
+      <div class="top-row">
+        <div class="shape-icon tertiary">
+          {% include shapes/clover4.svg %}
+          <p class="icon filled">star</p>
+        </div>
+        <h3>Beautiful</h3>
+      </div>
+      <p>Following the Material Design 3 guidelines, Chilen has a beautiful user interface that feels responsive and is extremely easy to use.</p>
+    </div>
+    <div class="feature-item">
+      <div class="top-row">
+        <div class="shape-icon secondary">
+          {% include shapes/sunny.svg %}
+          <p class="icon filled">rocket_launch</p>
+        </div>
+        <h3>Fast</h3>
+      </div>
+      <p>Built with Rust and Iced for maximum performance. Virtually no CPU usage, 200 MiB RAM utilization on idle with 1000 tracks loaded.</p>
+    </div>
+    <div class="feature-item">
+      <div class="top-row">
+        <div class="shape-icon primary">
+          {% include shapes/cookie12.svg %}
+          <p class="icon filled">verified_user</p>
+        </div>
+        <h3>Private</h3>
+      </div>
+      <p>No data ever leaves you device. Playlists, settings, listening statistics are never shared, until you decide to share them yourself.</p>
+    </div>
+  </div>
+</section>
+
+<section id="showcase" class="head">
+  <span class="kicker">SHOWCASE</span>
+  <h2>Screenshots from 0.1.0</h2>
+  <p>Blah blah blah</p>
+</section>
+
+<p>Content between</p>
+
+<section id="download">
+  {% include widgets/download.html %}
+</section>
+
+<section id="faq" class="head">
+  <span class="kicker">FAQ</span>
+  <h2>Common questions</h2>
+  <p>Curious about Chilen?</p>
+</section>
+
+<p>Content down</p>

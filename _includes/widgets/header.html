@@ -4,7 +4,7 @@
     #site-header {
       box-sizing: border-box;
       padding-top: calc({{ layout.header_float_offset }}px + var(--spacing-regular));
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -56,6 +56,7 @@
       border-radius: 9999px;
       box-shadow: 0 1px 4px 0 color-mix(in srgb, var(--shadow) 15%, transparent);
       overflow-x: auto;
+      transition: height 150ms ease;
     }
 
     #site-header.is-fixed #header-nav {
@@ -83,7 +84,8 @@
     }
 
     #header-nav .nav-item .label {
-      font-family: GoogleFlex-Medium;
+      font-family: GoogleFlex-Regular;
+      font-size: var(--font-size-small);
     }
 
     #header-nav .nav-item .active-indicator {
@@ -139,41 +141,45 @@
   const header = document.querySelector("#site-header");
   const floatOffset = Number("{{ layout.header_float_offset }}") || 0;
 
+  const links = [...document.querySelectorAll("#header-nav a")];
+
+  function getSections() {
+    return links
+      .map((link) => document.getElementById(link.getAttribute("href").slice(1)))
+      .filter(Boolean);
+  }
 
   function updateActiveLink() {
-    const links = document.querySelectorAll("#header-nav a");
-    const currentPath = window.location.pathname;
-    const currentHash = window.location.hash;
+    const headerBottom = header.getBoundingClientRect().bottom;
+    const sections = getSections();
+    let activeIndex = 0;
 
-    const itemWidthPercent = 100 / links.length;
+    sections.forEach((section, index) => {
+      if (section.getBoundingClientRect().top <= headerBottom) {
+        activeIndex = index;
+      }
+    });
 
     links.forEach((link, index) => {
-      const href = link.getAttribute("href");
-      const isActive = (href === currentHash && currentHash !== "") || 
-                      (href === currentPath) || 
-                      (currentHash === "" && href === "/");
-
-      link.classList.toggle("active", isActive);
+      link.classList.toggle("active", index === activeIndex);
     });
   }
 
   function updateHeader() {
-    const isFixed = window.scrollY > floatOffset;
-    const wasFixed = header.classList.contains("is-fixed");
+    const scrollY = window.scrollY;
+    const isFixed = scrollY > floatOffset;
     header.classList.toggle("is-fixed", isFixed);
 
-    if (isFixed !== wasFixed) {
-      updateActiveLink();
-    }
+    const progress = floatOffset > 0 ? Math.min(scrollY / floatOffset, 1) : 1;
+    header.style.paddingTop =
+      "calc(" + (1 - progress) * floatOffset + "px + var(--spacing-regular))";
+
+    updateActiveLink();
   }
   updateHeader();
 
   window.addEventListener("scroll", updateHeader, { passive: true });
-  window.addEventListener("resize", () => {
-    updateActiveLink();
-  });
-
-  window.addEventListener("hashchange", updateActiveLink);
+  window.addEventListener("resize", updateActiveLink);
+  document.addEventListener("DOMContentLoaded", updateActiveLink);
   window.addEventListener("load", updateActiveLink);
-  updateActiveLink();
 </script>
