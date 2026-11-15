@@ -1,6 +1,8 @@
 <footer>
   <style>
     footer {
+      position: relative;
+      overflow: hidden;
       padding: var(--spacing-large) var(--spacing-larger) 0px var(--spacing-larger);
     }
 
@@ -86,6 +88,27 @@
       width: 4px;
       height: 4px;
     }
+
+    #footer-decorative-shape {
+      position: absolute;
+      right: -4rem;
+      bottom: -6rem;
+      width: 17rem;
+      height: 17rem;
+      opacity: 0.08;
+      fill: var(--tertiary);
+      animation: footer-spin 80s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes footer-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 
   <nav>
@@ -101,7 +124,7 @@
       <div class="column">
         <p>COMMUNITY</p>
         <a href="{{ site.discord_url }}">Discord Server</a>
-        <a href="{{ site.signal_group_url }}">Signal Group</a>
+        <a href="/signal">Signal Group</a>
       </div>
       <div class="column">
         <p>PROJECT</p>
@@ -119,4 +142,7 @@
       <p>Built with Rust and Iced</p>
     </div>
   </nav>
+  <div id="footer-decorative-shape">
+    {% include shapes/cookie12.svg %}
+  </div>
 </footer>

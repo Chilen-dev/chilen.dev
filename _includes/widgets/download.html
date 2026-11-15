@@ -1,9 +1,269 @@
 <div id="download-section">
   <style>
     #download-section {
-      background-color: #ff0000;
+      display: flex;
+      gap: var(--spacing-larger);
+      padding: var(--spacing-large);
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+      border-radius: var(--rounding-larger);
+      border-bottom-left-radius: var(--rounding-regular);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #download-section #right {
+      width: 100%;
+    }
+
+    #download-section #left,
+    #download-section #right {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #download-section #left .heading-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-small);
+      margin-bottom: var(--spacing-smaller);
+    }
+
+    #download-section #left .heading-row h2 {
+      margin: 0;
+    }
+
+    #download-section #left #release-date {
+      font-size: var(--font-size-small);
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    #download-section #left #version {
+      color: var(--on-tertiary-container);
+      background-color: var(--tertiary-container);
+      padding: var(--spacing-smaller) var(--spacing-small);
+      border-radius: 9999px;
+      font-size: var(--font-size-smaller);
+      line-height: 1rem;
+      opacity: 0.9;
+      margin: 0;
+      margin-left: calc(-1 * var(--spacing-small));
+      transform: translateY(-0.35rem);
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    #download-section #left #download-button {
+      width: fit-content;
+      white-space: nowrap;
+      margin-top: var(--spacing-large);
+    }
+
+    #download-section #right hr {
+      background-color: var(--on-primary-container);
+      opacity: 0.4;
+    }
+
+    #download-section #right .os-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-smaller);
+      margin: var(--spacing-small);
+    }
+
+    #download-section #right .os-section .os-name {
+      margin: 0;
+      margin-bottom: var(--spacing-small);
+      font-size: var(--font-size-small);
+      font-family: GoogleFlex-Medium;
+      line-height: 1.25rem;
+      opacity: 0.9;
+    }
+
+    #download-section #decorative-shape {
+      position: absolute;
+      left: -4rem;
+      bottom: -8rem;
+      width: 22rem;
+      height: 22rem;
+      opacity: 0.15;
+      fill: var(--on-primary-container);
+      animation: spin 60s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #download-section #right .os-section button {
+      display: flex;
+      gap: var(--spacing-regular);
+      background-color: transparent;
+      border: 0px;
+      color: var(--on-surface-container);
+      border-radius: var(--rounding-regular);
+      padding: var(--spacing-small);
+      width: 100%;
+    }
+
+    #download-section #right .os-section button .icon {
+      font-size: var(--icon-size-large);
+    }
+
+    #download-section #right .os-section button .download-icon{
+      font-size: var(--icon-size-regular);
+      opacity: 0.9;
+    }
+
+    #download-section #right .os-section button div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      align-items: start;
+      justify-content: start;
+    }
+
+    #download-section #right .os-section button div .label,
+    #download-section #right .os-section button div .description {
+      margin: 0;
+    }
+
+    #download-section #right .os-section button div .label {
+      font-size: var(--font-size-small);
+      font-family: GoogleFlex-Medium;
+    }
+
+    #download-section #right .os-section button div .description {
+      font-size: var(--font-size-smaller);
+      opacity: 0.9;
+    }
+
+    #download-section #right .os-section button:hover {
+      background-color: color-mix(
+        in srgb,
+        var(--on-primary-container) var(--hover-state-layer-opacity),
+        transparent
+      );
+    }
+
+    #download-section #right .os-section button:active {
+      background-color: color-mix(
+        in srgb,
+        var(--on-primary-container) var(--pressed-state-layer-opacity),
+        transparent
+      );
+    }
+
+    #download-section #right .os-section .upcoming {
+      margin-bottom: var(--spacing-small);
+      display: flex;
+      gap: var(--spacing-small);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #download-section #right .os-section .upcoming .icon {
+      font-size: var(--icon-size-small);
+      opacity: 0.9;
+    }
+
+    #download-section #right .os-section .upcoming .label {
+      margin: 0;
+      opacity: 0.9;
+      font-size: var(--font-size-small);
+    }
+
+    @media (max-width: 890px) {
+      #download-section {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      #download-section #left {
+        display: contents;
+      }
+
+      #download-section #left .heading-row {
+        order: 0;
+      }
+
+      #download-section #left button {
+        align-self: center;
+      }
+
+      #download-section #right {
+        order: 2;
+        width: 100%;
+      }
+
+      #download-section #left #download-button {
+        order: 3;
+        margin-top: var(--spacing-large);
+      }
     }
   </style>
 
-  <p>Download section</p>
+  <div id="left">
+    <div class="heading-row">
+      <h2>Get Chilen</h2>
+      <p id="version">v0.1.0</p>
+    </div>
+    <p id="release-date">Released 1 December 2026</p>
+    <button
+      id="download-button"
+      class="medium rounded filled-primary"
+    >
+      <p class="icon filled">history</p>
+      All downloads and changelogs
+    </button>
+  </div>
+  <div id="right">
+    <div class="os-section">
+      <p class="os-name">Linux</p>
+      <button>
+        <p class="icon filled">box</p>
+        <div>
+          <p class="label">Flatpak</p>
+          <p class="description">Recommended for most Linux distributions</p>
+        </div>
+        <p class="download-icon icon filled">download</p>
+      </button>
+      <button>
+        <p class="icon filled">manufacturing</p>
+        <div>
+          <p class="label">AppImage</p>
+          <p class="description">Portable single file, no installation needed</p>
+        </div>
+        <p class="download-icon icon filled">download</p>
+      </button>
+    </div>
+    <hr>
+    <div class="os-section">
+      <p class="os-name">Windows</p>
+      <div class="upcoming">
+        <p class="icon filled">upcoming</p>
+        <p class="label">Coming soon!</p>
+      </div>
+    </div>
+    <hr>
+    <div class="os-section">
+      <p class="os-name">macOS</p>
+      <div class="upcoming">
+        <p class="icon filled">upcoming</p>
+        <p class="label">Coming soon!</p>
+      </div>
+    </div>
+  </div>
+  <div id="decorative-shape">
+    {% include shapes/very_sunny.svg %}
+  </div>
 </div>

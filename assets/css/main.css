@@ -4,16 +4,20 @@
   --rounding-large: 1.75rem;
   --rounding-larger: 2.875rem;
 
+  --spacing-smaller: 0.3rem;
   --spacing-small: 0.5rem;
   --spacing-regular: 1rem;
   --spacing-large: 2rem;
   --spacing-larger: 3.25rem;
 
+  --font-size-smaller: 0.8rem;
   --font-size-small: 0.95rem;
   --font-size-regular: 0.98rem;
   --font-size-regular: 1.2rem;
 
+  --icon-size-small: 1.1rem;
   --icon-size-regular: 1.5rem;
+  --icon-size-large: 1.7rem;
 
   --pressed-state-layer-opacity: 10%;
   --focus-state-layer-opacity: 10%;
@@ -111,6 +115,12 @@ button {
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: background-color 100ms ease;
+  border: 0px;
+}
+
+button .icon {
+  cursor: inherit;
 }
 
 button.medium {
@@ -130,13 +140,27 @@ button.medium .icon.filled {
 button.filled-primary {
   background-color: var(--primary);
   color: var(--on-primary);
-  border: 0px;
+}
+
+button.filled-primary:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--on-primary) var(--hover-state-layer-opacity),
+    var(--primary)
+  );
+}
+
+button.filled-primary:active {
+  background-color: color-mix(
+    in srgb,
+    var(--on-primary) var(--pressed-state-layer-opacity),
+    var(--primary)
+  );
 }
 
 button.tonal-primary {
   background-color: var(--primary-container);
   color: var(--on-primary-container);
-  border: 0px;
 }
 
 button.filled-primary .icon {
@@ -145,4 +169,11 @@ button.filled-primary .icon {
 
 button.rounded {
   border-radius: 9999px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: var(--outline-variant);
+  border: 0px;
 }

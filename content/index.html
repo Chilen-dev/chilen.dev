@@ -77,8 +77,12 @@ permalink: /
 </div>
 
 <style>
+  :root {
+    --section-between-spacing: calc(2.5 * var(--spacing-larger));
+  }
+
   .head {
-    margin-top: calc(2.5 * var(--spacing-larger));
+    margin-top: var(--section-between-spacing);
     display: flex;
     flex-direction: column;
     margin-botto: var(--spacing-large);
@@ -200,6 +204,10 @@ permalink: /
   .feature-item h3, .feature-item p {
     margin: 0;
   }
+
+  #download {
+    margin-top: var(--section-between-spacing);
+  }
 </style>
 
 <section id="features" class="head">
@@ -256,8 +264,6 @@ permalink: /
   <h2>Screenshots from 0.1.0</h2>
   <p>Blah blah blah</p>
 </section>
-
-<p>Content between</p>
 
 <section id="download">
   {% include widgets/download.html %}
