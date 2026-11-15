@@ -107,8 +107,20 @@ permalink: /
   #features-grid {
     margin-top: var(--spacing-large);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--spacing-regular);
+  }
+
+  @media (max-width: 1200px) {
+    #features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 700px) {
+    #features-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .feature-item {
@@ -136,9 +148,15 @@ permalink: /
     color: var(--on-surface-variant);
   }
 
-  .feature-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 9px 0 color-mix(in srgb, var(--shadow) 20%, transparent);
+  @media (hover: hover) {
+    .feature-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 9px 0 color-mix(in srgb, var(--shadow) 20%, transparent);
+    }
+
+    .feature-item:hover .shape-icon svg {
+      transform: rotate(30deg) scale(1.1);
+    }
   }
 
   .feature-item .top-row {
@@ -166,10 +184,6 @@ permalink: /
     filter: drop-shadow(0 3px 4px color-mix(in srgb, var(--shadow) 10%, transparent));
     width: 100%;
     height: 100%;
-  }
-
-  .feature-item:hover .shape-icon svg {
-    transform: rotate(30deg) scale(1.1);
   }
 
   .feature-item .shape-icon.primary svg {
@@ -234,7 +248,7 @@ permalink: /
         </div>
         <h3>Beautiful</h3>
       </div>
-      <p>Following the Material Design 3 guidelines, Chilen has a beautiful user interface that feels responsive and is extremely easy to use.</p>
+      <p>Following the Material Design 3 guidelines, Chilen has a beautiful user interface that feels responsive and is exceptionally easy to use.</p>
     </div>
     <div class="feature-item">
       <div class="top-row">
