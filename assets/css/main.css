@@ -23,6 +23,12 @@
   --focus-state-layer-opacity: 10%;
   --hover-state-layer-opacity: 8%;
   --disabled-state-layer-opacity: 38%;
+
+  --easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
 }
 
 html {
@@ -115,7 +121,7 @@ button {
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: background-color 100ms ease;
+  transition: background-color 100ms var(--easing-standard);
   border: 0px;
 }
 
@@ -163,8 +169,20 @@ button.tonal-primary {
   color: var(--on-primary-container);
 }
 
-button.filled-primary .icon {
-  color: var(--on-primary);
+button.tonal-primary:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--on-primary-container) var(--hover-state-layer-opacity),
+    var(--primary-container)
+  );
+}
+
+button.tonal-primary:active {
+  background-color: color-mix(
+    in srgb,
+    var(--on-primary-container) var(--pressed-state-layer-opacity),
+    var(--primary-container)
+  );
 }
 
 button.rounded {

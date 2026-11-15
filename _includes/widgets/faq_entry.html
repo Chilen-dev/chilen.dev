@@ -1,0 +1,108 @@
+<div class="faq-entry">
+  <style>
+    .faq-entry {
+      --anim-duration: 200ms;
+    }
+
+    .faq-entry details {
+      border-radius: 4px;
+      background-color: var(--surface-container-low);
+      transition:
+        background-color var(--anim-duration) var(--easing-standard),
+        border-radius var(--anim-duration) var(--easing-standard),
+        margin var(--anim-duration) var(--easing-standard);
+    }
+
+    .faq-entry details[open] {
+      background-color: var(--surface-container-high);
+      border-radius: var(--rounding-large);
+      margin: var(--spacing-small) 0;
+    }
+
+    .faq-entry:first-child details {
+      border-top-left-radius: var(--rounding-large);
+      border-top-right-radius: var(--rounding-large);
+    }
+
+    .faq-entry:last-child details {
+      border-bottom-left-radius: var(--rounding-large);
+      border-bottom-right-radius: var(--rounding-large);
+    }
+
+    .faq-entry:first-child details[open],
+    .faq-entry:last-child details[open] {
+      border-radius: var(--rounding-large);
+    }
+
+    .faq-entry summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-regular);
+      padding: var(--spacing-regular);
+      cursor: pointer;
+      font-family: GoogleFlex-Medium;
+      list-style: none;
+    }
+
+    .faq-entry summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-entry summary .icon {
+      cursor: inherit;
+      font-size: var(--icon-size-large);
+      transition: transform var(--anim-duration) var(--easing-standard);
+    }
+
+    .faq-entry details[open] summary .icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-entry .answer-wrap {
+      overflow: hidden;
+    }
+
+    @supports (interpolate-size: allow-keywords) {
+      .faq-entry {
+        interpolate-size: allow-keywords;
+      }
+
+      .faq-entry details::details-content {
+        height: 0;
+        opacity: 0;
+        transition:
+          height var(--anim-duration) var(--easing-standard),
+          opacity var(--anim-duration) var(--easing-standard),
+          content-visibility var(--anim-duration) var(--easing-standard) allow-discrete;
+      }
+
+      .faq-entry details[open]::details-content {
+        height: auto;
+        opacity: 1;
+      }
+    }
+
+    .faq-entry .answer {
+      margin: 0;
+      padding: 0 var(--spacing-regular) var(--spacing-regular);
+      color: var(--on-surface-variant);
+      font-size: var(--font-size-small);
+      transform: translateY(0);
+      transition: transform var(--anim-duration) var(--easing-standard);
+    }
+
+    .faq-entry details:not([open]) .answer {
+      transform: translateY(-4px);
+    }
+  </style>
+  <details>
+    <summary>
+      {{ include.question }}
+      <p class="icon filled">expand_more</p>
+    </summary>
+    <div class="answer-wrap">
+      <p class="answer">{{ include.answer }}</p>
+    </div>
+  </details>
+</div>

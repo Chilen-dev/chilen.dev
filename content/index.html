@@ -79,6 +79,14 @@ permalink: /
 <style>
   :root {
     --section-between-spacing: calc(2.5 * var(--spacing-larger));
+
+    --header-float-offset: 16px;
+    --header-nav-height: 60px;
+    --header-nav-height-fixed: 80px;
+    --header-breathing-room: 1rem;
+    --header-active-offset: 4rem;
+    --header-total-height: calc(var(--spacing-regular) + var(--header-nav-height-fixed));
+    --header-scroll-margin: calc(var(--header-total-height) + var(--header-breathing-room));
   }
 
   .head {
@@ -222,6 +230,21 @@ permalink: /
   #download {
     margin-top: var(--section-between-spacing);
   }
+
+  #faq {
+    margin-bottom: var(--spacing-large);
+  }
+
+  #faq-list {
+    margin-top: var(--spacing-large);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  section[id], #home {
+    scroll-margin-top: var(--header-scroll-margin);
+  }
 </style>
 
 <section id="features" class="head">
@@ -286,7 +309,37 @@ permalink: /
 <section id="faq" class="head">
   <span class="kicker">FAQ</span>
   <h2>Common questions</h2>
-  <p>Curious about Chilen?</p>
+  <div id="faq-list">
+    {%
+      include widgets/faq_entry.html
+      question="Question?"
+      answer="Answer."
+    %}
+    {%
+      include widgets/faq_entry.html
+      question="Question?"
+      answer="Answer."
+    %}
+    {%
+      include widgets/faq_entry.html
+      question="Question?"
+      answer="Answer."
+    %}
+    {%
+      include widgets/faq_entry.html
+      question="Question?"
+      answer="Answer."
+    %}
+    {%
+      include widgets/faq_entry.html
+      question="Question?"
+      answer="Answer."
+    %}
+    {%
+      include widgets/faq_entry.html
+      question="Question?"
+      answer="Answer."
+    %}
+  </div>
 </section>
 
-<p>Content down</p>
