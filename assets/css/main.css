@@ -129,17 +129,18 @@ button .icon {
   cursor: inherit;
 }
 
+button p {
+  margin: 0;
+}
+
 button.medium {
   height: 3.5rem;
   padding: 1.5rem;
   gap: 0.5rem;
-}
-
-button.medium {
   font-size: 1rem;
 }
 
-button.medium .icon.filled {
+button.medium .icon {
   font-size: 1.5rem;
 }
 
