@@ -1,0 +1,139 @@
+---
+permalink: /signal
+title: Signal Group
+layout: minimal
+---
+
+<style type="text/css" media="screen">
+  #signal-landing {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-larger);
+  }
+
+  #signal-landing > .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+  }
+
+  #signal-landing .shape-icon {
+    display: grid;
+    place-items: center;
+    width: 7rem;
+    height: 7rem;
+    flex: 0 0 7rem;
+    container-type: inline-size;
+  }
+
+  #signal-landing .shape-icon > * {
+    grid-area: 1 / 1;
+  }
+
+  #signal-landing .shape-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--on-tertiary);
+    filter: drop-shadow(0 3px 4px color-mix(in srgb, var(--shadow) 25%, transparent));
+  }
+
+  #signal-landing .shape-icon .icon {
+    z-index: 1;
+    font-size: 50cqi;
+    color: var(--tertiary);
+  }
+
+  #signal-landing .kicker {
+    margin-top: var(--spacing-large);
+    font-family: GoogleFlex-Medium;
+    font-size: var(--font-size-small);
+    color: var(--tertiary);
+  }
+
+  #signal-landing h1 {
+    margin: var(--spacing-small) 0 0;
+    font-size: 3rem;
+    font-family: GoogleFlex-Black;
+  }
+
+  #signal-landing .notice {
+    margin-top: var(--spacing-large);
+    padding: var(--spacing-regular);
+    border-radius: var(--rounding-large);
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+    box-shadow: 0 3px 7px 0 color-mix(in srgb, var(--shadow) 20%, transparent);
+  }
+
+  #signal-landing .button-row {
+    margin-top: var(--spacing-large);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-small);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  #signal-landing > .inner > * {
+    animation: rise 500ms var(--easing-emphasized-decelerate) both;
+  }
+
+  #signal-landing > .inner > *:nth-child(2) { animation-delay: 60ms; }
+  #signal-landing > .inner > *:nth-child(3) { animation-delay: 120ms; }
+  #signal-landing > .inner > *:nth-child(4) { animation-delay: 180ms; }
+  #signal-landing > .inner > *:nth-child(5) { animation-delay: 240ms; }
+  #signal-landing > .inner > *:nth-child(6) { animation-delay: 300ms; }
+  #signal-landing > .inner > *:nth-child(7) { animation-delay: 360ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #signal-landing > .inner > * {
+      animation: none;
+    }
+  }
+</style>
+
+<div id="signal-landing">
+  <div class="inner">
+    <div class="shape-icon">
+      {% include shapes/clover4.svg %}
+      <p class="icon filled">chat</p>
+    </div>
+
+    <span class="kicker">COMMUNITY</span>
+    <h1>Join us on Signal</h1>
+    <p>Talk Chilen with the community - get help, report bugs, and share feedback and ideas directly with the developer.</p>
+
+    <p class="notice">Since the Signal group has been made public, there's been an influx of bot accounts joining in. Before you apply, please make sure to <a href="{{ site.dev_contact_url }}">contact me</a> for a vibe check.<br><br>Anything like "hey, I'm a person, and I want to join the Chilen Signal group" works. I just need to know you're a human!</p>
+
+    <div class="button-row">
+      <button
+        onclick="location.href='{{ site.signal_url }}'"
+        class="medium rounded filled-primary"
+      >
+        <p class="icon filled">send</p>
+        Open Signal
+      </button>
+      <button
+        onclick="location.href='/'"
+        class="medium rounded tonal-primary"
+      >
+        <p class="icon filled">home</p>
+        Back to Home
+      </button>
+    </div>
+  </div>
+</div>

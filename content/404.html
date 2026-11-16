@@ -1,6 +1,6 @@
 ---
 permalink: /404.html
-layout: minimal
+layout: subpage
 ---
 
 <style type="text/css" media="screen">
@@ -40,7 +40,6 @@ layout: minimal
     height: 100%;
     fill: var(--on-tertiary);
     filter: drop-shadow(0 3px 4px color-mix(in srgb, var(--shadow) 25%, transparent));
-    transition: transform 200ms ease;
   }
 
   #error-404 .shape-icon .icon {
@@ -61,7 +60,6 @@ layout: minimal
     line-height: 1;
     font-size: clamp(5rem, 18vw, 9rem);
     font-family: GoogleFlex-Black;
-    color: var(--on-surface);
   }
 
   #error-404 h1 em {
@@ -72,7 +70,6 @@ layout: minimal
   #error-404 h2 {
     margin: var(--spacing-regular) 0 0;
     font-family: GoogleFlex-Medium;
-    color: var(--on-surface);
   }
 
   #error-404 .button-row {
@@ -101,12 +98,6 @@ layout: minimal
   #error-404 .inner > *:nth-child(4) { animation-delay: 180ms; }
   #error-404 .inner > *:nth-child(5) { animation-delay: 240ms; }
   #error-404 .inner > *:nth-child(6) { animation-delay: 300ms; }
-
-  @media (hover: hover) {
-    #error-404 .shape-icon:hover svg {
-      transform: rotate(30deg) scale(1.1);
-    }
-  }
 
   @media (prefers-reduced-motion: reduce) {
     #error-404 .inner > * {
