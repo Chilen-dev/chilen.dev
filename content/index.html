@@ -76,7 +76,10 @@ permalink: /
   </div>
 
   <div id="img-wrapper">
-    <img alt="Screenshot of the home screen of Chilen" src="/assets/screenshots/home.png"><img>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/home.png">
+      <img alt="Screenshot of the home screen of Chilen" src="/assets/screenshots/light/home.png">
+    </picture>
   </div>
 </div>
 
@@ -111,6 +114,36 @@ permalink: /
   .head p {
     color: var(--on-surface-variant);
     font-size: var(--font-size-small);
+  }
+
+  #showcase-list {
+    margin-top: var(--spacing-large);
+    display: flex;
+    gap: var(--spacing-regular);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--spacing-regular);
+  }
+
+  #showcase-list > figure {
+    margin: 0;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  #showcase-list img {
+    display: block;
+    height: 20rem;
+    width: auto;
+    border-radius: var(--rounding-regular);
+    box-shadow: 0 3px 7px 0 color-mix(in srgb, var(--shadow) 30%, transparent);
+  }
+
+  #showcase-list figcaption {
+    margin-top: var(--spacing-small);
+    text-align: center;
+    color: var(--on-surface-variant);
+    font-size: var(--font-size-smaller);
   }
 
   #features-grid {
@@ -196,15 +229,15 @@ permalink: /
   }
 
   .feature-item .shape-icon.primary svg {
-    fill: var(--on-primary);
+    fill: var(--primary-container);
   }
 
   .feature-item .shape-icon.secondary svg {
-    fill: var(--on-secondary);
+    fill: var(--secondary-container);
   }
 
   .feature-item .shape-icon.tertiary svg {
-    fill: var(--on-tertiary);
+    fill: var(--tertiary-container);
   }
 
   .feature-item .shape-icon .icon {
@@ -213,15 +246,15 @@ permalink: /
   }
 
   .feature-item .shape-icon.primary .icon {
-    color: var(--primary);
+    color: var(--on-primary-container);
   }
 
   .feature-item .shape-icon.secondary .icon {
-    color: var(--secondary);
+    color: var(--on-secondary-container);
   }
 
   .feature-item .shape-icon.tertiary .icon {
-    color: var(--tertiary);
+    color: var(--on-tertiary-container);
   }
 
   .feature-item h3, .feature-item p {
@@ -300,7 +333,33 @@ permalink: /
 <section id="showcase" class="head">
   <span class="kicker">SHOWCASE</span>
   <h2>Screenshots from 0.1.0</h2>
-  <p>Blah blah blah</p>
+  <p>Scroll through the app's other screens.</p>
+
+  <div id="showcase-list">
+    <figure>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/artist.png">
+        <img alt="Artist screen of Chilen" src="/assets/screenshots/light/artist.png">
+      </picture>
+      <figcaption>Artist</figcaption>
+    </figure>
+
+    <figure>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/favorites.png">
+        <img alt="Favorites screen of Chilen" src="/assets/screenshots/light/favorites.png">
+      </picture>
+      <figcaption>Favorites</figcaption>
+    </figure>
+
+    <figure>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/look-and-feel.png">
+        <img alt="Look and feel screen of Chilen" src="/assets/screenshots/light/look-and-feel.png">
+      </picture>
+      <figcaption>Look & Feel</figcaption>
+    </figure>
+  </div>
 </section>
 
 <section id="download">
