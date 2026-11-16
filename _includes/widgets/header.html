@@ -1,21 +1,24 @@
 <header id="site-header">
   <style>
+    :root {
+      --nav-padding: 6px;
+      --item-width: 8rem;
+    }
+
     #site-header {
       box-sizing: border-box;
       padding-top: var(--spacing-regular);
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       z-index: 1000;
-      padding-inline: 10%;
+      overflow-x: auto;
     }
 
     #site-header a {
       text-decoration: none;
       color: inherit;
       border-radius: 9999px;
-      transition: background-color 100ms ease;
+      transition: color 100ms var(--easing-standard), background-color 100ms var(--easing-standard);
     }
 
     #site-header a.active {
@@ -40,25 +43,25 @@
 
     #header-nav {
       z-index: -1;
+      padding: var(--nav-padding);
       position: relative;
-      height: var(--header-nav-height);
+      height: calc(var(--header-nav-height) - 2 * var(--nav-padding));
       display: flex;
       background-color: var(--surface-container);
-      width: 100%;
       border-radius: 9999px;
+      width: fit-content;
+      margin-inline: auto;
       box-shadow: 0 1px 4px 0 color-mix(in srgb, var(--shadow) 15%, transparent);
-      overflow-x: auto;
     }
 
     #header-nav .nav-item {
       position: relative;
-      flex: 1 0 0;
       display: flex;
       gap: var(--spacing-small);
       justify-content: center;
       align-items: center;
       height: 100%;
-      padding-inline: 16px;
+      width: var(--item-width);
     }
 
     #header-nav .nav-item .icon {
@@ -86,14 +89,13 @@
       pointer-events: none;
       width: 0%;
       margin: auto;
-      transition: width 150ms ease, opacity 150ms ease;
+      transition: width 150ms var(--easing-standard), opacity 150ms var(--easing-standard);
     }
 
     #header-nav .nav-item.active .active-indicator {
       width: 100%;
       opacity: 1;
     }
-
   </style>
 
   <nav id="header-nav">
