@@ -5,6 +5,10 @@ permalink: /
 
 <div id="home">
   <style>
+    main {
+      padding-top: var(--spacing-larger);
+    }
+
     #home > p {
       color: var(--on-surface-variant);
       width: 50%;
@@ -80,12 +84,9 @@ permalink: /
   :root {
     --section-between-spacing: calc(2.5 * var(--spacing-larger));
 
-    --header-float-offset: 16px;
     --header-nav-height: 60px;
-    --header-nav-height-fixed: 80px;
     --header-breathing-room: 1rem;
-    --header-active-offset: 4rem;
-    --header-total-height: calc(var(--spacing-regular) + var(--header-nav-height-fixed));
+    --header-total-height: calc(var(--spacing-regular) + var(--header-nav-height));
     --header-scroll-margin: calc(var(--header-total-height) + var(--header-breathing-room));
   }
 

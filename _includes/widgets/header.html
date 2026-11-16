@@ -2,20 +2,13 @@
   <style>
     #site-header {
       box-sizing: border-box;
-      padding-top: calc(var(--header-float-offset) + var(--spacing-regular));
+      padding-top: var(--spacing-regular);
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
       padding-inline: 10%;
-      transition: padding-inline 150ms ease;
-    }
-
-    #site-header.fixed {
-      padding-top: var(--spacing-regular);
-      position: fixed;
-      padding-inline: var(--spacing-large);
     }
 
     #site-header a {
@@ -55,11 +48,6 @@
       border-radius: 9999px;
       box-shadow: 0 1px 4px 0 color-mix(in srgb, var(--shadow) 15%, transparent);
       overflow-x: auto;
-      transition: height 150ms ease;
-    }
-
-    #site-header.fixed #header-nav {
-      height: var(--header-nav-height-fixed);
     }
 
     #header-nav .nav-item {
@@ -144,12 +132,34 @@
 
 <script>
   const header = document.querySelector("#site-header");
-  const floatOffset =
-    parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-float-offset")) || 0;
-  const activeOffset =
-    parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-active-offset")) || 0;
 
   const links = [...document.querySelectorAll("#header-nav a")];
+
+  let updatesPaused = false;
+  let unpauseTimeout;
+
+  links.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const target = document.getElementById(link.getAttribute("href").slice(1));
+      if (!target) return;
+
+      event.preventDefault();
+      history.pushState(null, "", link.getAttribute("href"));
+
+      updatesPaused = true;
+      links.forEach((other) => other.classList.toggle("active", other === link));
+
+      target.scrollIntoView({ behavior: "smooth" });
+
+      clearTimeout(unpauseTimeout);
+      unpauseTimeout = setTimeout(() => (updatesPaused = false), 1000);
+    });
+  });
+
+  window.addEventListener("scrollend", () => {
+    clearTimeout(unpauseTimeout);
+    updatesPaused = false;
+  });
 
   function getSections() {
     return links
@@ -158,6 +168,8 @@
   }
 
   function updateActiveLink() {
+    if (updatesPaused) return;
+
     const headerBottom = header.getBoundingClientRect().bottom;
     const sections = getSections();
     let activeIndex = sections.length - 1;
@@ -174,21 +186,16 @@
     });
   }
 
-  function updateHeader() {
-    const scrollY = window.scrollY;
-    const isFixed = scrollY > floatOffset;
-    header.classList.toggle("fixed", isFixed);
+  updateActiveLink();
 
-    const progress = floatOffset > 0 ? Math.min(scrollY / floatOffset, 1) : 1;
-    header.style.paddingTop =
-      "calc(" + (1 - progress) * floatOffset + "px + var(--spacing-regular))";
-
-    updateActiveLink();
-  }
-  updateHeader();
-
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
   window.addEventListener("resize", updateActiveLink);
   document.addEventListener("DOMContentLoaded", updateActiveLink);
   window.addEventListener("load", updateActiveLink);
+
+  window.addEventListener("load", () => {
+    if (location.hash) {
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+  });
 </script>
