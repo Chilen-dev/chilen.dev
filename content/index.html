@@ -310,35 +310,33 @@ permalink: /
   <span class="kicker">FAQ</span>
   <h2>Common questions</h2>
   <div id="faq-list">
-    {%
-      include widgets/faq_entry.html
-      question="Question?"
-      answer="Answer."
+    {% capture free_answer %}Yes! Chilen is free and open source, meaning anyone can view its <a href="{{ site.project_github_url }}">source code</a>.{% endcapture %}
+    {% include widgets/faq_entry.html
+      question="Is Chilen free?"
+      answer=free_answer
     %}
-    {%
-      include widgets/faq_entry.html
-      question="Question?"
-      answer="Answer."
+
+    {% include widgets/faq_entry.html
+      question="What audio formats are supported?"
+      answer="Chilen supports all modern audio codecs, including MP3, FLAC, OGG, Vorbis, ALAC and WAV. The full list of supported formats can be found <a href=\"https://github.com/pdeljanov/symphonia#roadmap\">here</a>."
     %}
+
     {%
       include widgets/faq_entry.html
-      question="Question?"
-      answer="Answer."
+      question="How does it organize my library?"
+      answer="Chilen groups your tracks by albums, artists and genres based on their metadata. Tracks can additionally be grouped in playlists."
     %}
+
     {%
       include widgets/faq_entry.html
-      question="Question?"
-      answer="Answer."
+      question="Why are Windows and macOS coming soon?"
+      answer="Because I am just one person working on this project, and I have limited resources and time. Linux is what I work on, so developing for Linux first is the easiest way to go. Cross-platform support will be added after the first Linux release."
     %}
-    {%
-      include widgets/faq_entry.html
-      question="Question?"
-      answer="Answer."
-    %}
-    {%
-      include widgets/faq_entry.html
-      question="Question?"
-      answer="Answer."
+
+    {% capture report_answer %}Open an issue on <a href="{{ site.project_github_url }}/issues">GitHub</a>, or join the community on <a href="{{ site.discord_url }}">Discord</a> to discuss it first.{% endcapture %}
+    {% include widgets/faq_entry.html
+      question="How can I report a bug or suggest a feature?"
+      answer=report_answer
     %}
   </div>
 </section>
