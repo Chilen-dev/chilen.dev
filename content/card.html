@@ -1,0 +1,153 @@
+---
+title: Social Preview Card
+layout: minimal
+---
+
+<!-- NOTE: This one's just vibed, it's not supposed to be rendered anywhere anyway. -->
+
+<style type="text/css" media="screen">
+  :root {
+    --primary: #BCC2FF;
+    --on-primary: #242B61;
+    --tertiary: #E6BAD6;
+    --surface: #131318;
+    --on-surface: #E4E1E9;
+    --on-surface-variant: #C7C5D0;
+    --shadow: #000000;
+  }
+
+  #card-page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-larger);
+    background: #0D0E13;
+  }
+
+  #card {
+    position: relative;
+    overflow: hidden;
+    width: 1200px;
+    height: 630px;
+    flex: 0 0 auto;
+    background: var(--surface);
+  }
+
+  #card > .bg-shape {
+    position: absolute;
+    pointer-events: none;
+    fill: var(--tertiary);
+    opacity: 0.07;
+  }
+
+  #card > .bg-shape.one {
+    right: -14rem;
+    bottom: -18rem;
+    width: 36rem;
+    transform: rotate(15deg);
+  }
+
+  #card > .bg-shape.two {
+    top: -14rem;
+    left: -9rem;
+    width: 24rem;
+    transform: rotate(25deg);
+  }
+
+  #card > .bg-shape.three {
+    top: 80%;
+    left: 34%;
+    width: 26rem;
+    fill: var(--primary);
+    transform: translate(-50%, -50%) rotate(10deg);
+  }
+
+  #card > .layout {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+  }
+
+  #card .brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #card .logo-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  #card .logo-row img {
+    width: 5.5rem;
+  }
+
+  #card .name {
+    font-family: GoogleFlex-Black;
+    font-size: 4.5rem;
+    color: var(--on-surface);
+  }
+
+  #card .tagline {
+    margin-top: 1.5rem;
+    white-space: nowrap;
+    line-height: 1.15;
+    letter-spacing: -0.05rem;
+    font-family: GoogleFlex-Regular;
+    font-size: 2.75rem;
+    color: var(--on-surface);
+  }
+
+  #card .tagline em {
+    font-style: normal;
+    color: var(--primary);
+  }
+
+  #card .sub {
+    margin-top: 1.25rem;
+    color: var(--on-surface-variant);
+    font-size: 1.35rem;
+  }
+
+  #card .phone img {
+    display: block;
+    height: 540px;
+    width: auto;
+    border-radius: 2rem;
+    box-shadow: 0 18px 44px 0 color-mix(in srgb, var(--shadow) 45%, transparent);
+  }
+</style>
+
+<div id="card-page">
+  <div id="card">
+    <div class="bg-shape one">{% include shapes/cookie12.svg %}</div>
+    <div class="bg-shape two">{% include shapes/cookie7.svg %}</div>
+    <div class="bg-shape three">{% include shapes/clover4.svg %}</div>
+
+    <div class="layout">
+      <div class="brand">
+        <div class="logo-row">
+          <img alt="" src="/assets/icons/logo.svg">
+          <div class="name">Chilen</div>
+        </div>
+        <div class="tagline">
+          Offline music player
+          <br>for <em>your</em> library.
+        </div>
+      </div>
+
+      <div class="phone">
+        <img alt="" src="/assets/screenshots/dark/home.png">
+      </div>
+    </div>
+  </div>
+</div>
