@@ -20,12 +20,18 @@
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#131318" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#FBF8FF" media="(prefers-color-scheme: light)">
-<link rel="preload" href="/assets/fonts/NotoSans-Regular.woff" as="font" crossorigin>
-<link rel="preload" href="/assets/fonts/NotoSans-Medium.woff" as="font" crossorigin>
-<link rel="preload" href="/assets/fonts/NotoSans-Black.woff" as="font" crossorigin>
-<link rel="preload" href="/assets/fonts/MaterialSymbolsRounded_28pt-Regular.woff" as="font" crossorigin>
-<link rel="preload" href="/assets/fonts/MaterialSymbolsRounded_Filled_28pt-Regular.woff" as="font" crossorigin>
-<link rel="preload" href="/assets/fonts/NotoSansMono-Regular.woff" as="font" crossorigin>
+{% if page.fonts %}
+    {% for font in page.fonts %}
+        <link rel="preload" href="/assets/fonts/{{ font }}.woff" as="font" crossorigin>
+    {% endfor %}
+{% else %}
+    <link rel="preload" href="/assets/fonts/NotoSans-Regular.woff" as="font" crossorigin>
+    <link rel="preload" href="/assets/fonts/NotoSans-Medium.woff" as="font" crossorigin>
+    <link rel="preload" href="/assets/fonts/NotoSans-Black.woff" as="font" crossorigin>
+    <link rel="preload" href="/assets/fonts/MaterialSymbolsRounded_28pt-Regular.woff" as="font" crossorigin>
+    <link rel="preload" href="/assets/fonts/MaterialSymbolsRounded_Filled_28pt-Regular.woff" as="font" crossorigin>
+    <link rel="preload" href="/assets/fonts/NotoSansMono-Regular.woff" as="font" crossorigin>
+{% endif %}
 <link rel="stylesheet" href="/assets/css/theme-light.css" media="(prefers-color-scheme: light)">
 <link rel="stylesheet" href="/assets/css/theme-dark.css" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/assets/css/main.css">
@@ -46,16 +52,13 @@
 <script>
   const revealWhenFontsSettle = () => document.documentElement.classList.add("fonts-ready");
 
-  Promise.allSettled(
-    [
-      "1rem GoogleFlex-Regular",
-      "1rem GoogleFlex-Medium",
-      "1rem GoogleFlex-Black",
-      "1rem IconsOutlined",
-      "1rem IconsFilled",
-      "1rem NotoSans-Mono",
-    ].map((font) => document.fonts.load(font))
-  ).then(revealWhenFontsSettle);
+  // Wait for layout to trigger font matching, then hold paint until every font
+  // the page actually uses has settled.
+  document.addEventListener("DOMContentLoaded", () => {
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => document.fonts.ready.then(revealWhenFontsSettle))
+    );
+  });
 
   setTimeout(revealWhenFontsSettle, 5000);
 </script>
@@ -71,7 +74,10 @@
 {% else %}
     <meta property="og:image" content="{{ site.url }}/assets/images/social-preview.png">
 {% endif %}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
+<link rel="icon" type="image/svg+xml" href="/assets/icons/logo.svg">
 <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
 <link rel="canonical" href="{{ site.url }}{{ include.content | prepend: "/" }}">

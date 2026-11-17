@@ -3,6 +3,7 @@ permalink: /download
 title: Download Chilen
 layout: subpage
 css: [code-with-copy, tooltip, os-section]
+fonts: [NotoSans-Regular, NotoSans-Medium, NotoSans-Black, MaterialSymbolsRounded_Filled_28pt-Regular, NotoSansMono-Regular]
 ---
 
 <style type="text/css" media="screen">
@@ -175,6 +176,12 @@ css: [code-with-copy, tooltip, os-section]
     }
     to {
       transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #downloads .download-card .decorative-shape {
+      animation: none;
     }
   }
 
