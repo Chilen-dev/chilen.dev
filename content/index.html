@@ -38,7 +38,14 @@ css: [os-section]
     #button-row {
       margin-top: 1.5rem;
       display: flex;
-      gap: var(--spacing-small);
+      flex-wrap: wrap;
+      gap: var(--spacing-regular) var(--spacing-small);
+    }
+
+    @media (max-width: 560px) {
+      #button-row {
+        justify-content: center;
+      }
     }
 
     #img-wrapper {

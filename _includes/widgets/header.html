@@ -96,6 +96,24 @@
       width: 100%;
       opacity: 1;
     }
+
+    @media (max-width: 700px) {
+      :root {
+        --item-width: auto;
+      }
+
+      #site-header {
+        padding-top: var(--spacing-smaller);
+      }
+
+      #header-nav .nav-item {
+        padding-inline: var(--spacing-regular);
+      }
+
+      #header-nav .nav-item .label {
+        display: none;
+      }
+    }
   </style>
 
   <nav id="header-nav">

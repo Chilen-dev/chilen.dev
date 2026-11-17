@@ -101,3 +101,9 @@
   opacity: 0.9;
   font-size: var(--font-size-small);
 }
+
+@media (max-width: 560px) {
+  .os-section button div .description {
+    display: none;
+  }
+}
