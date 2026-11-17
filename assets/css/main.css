@@ -40,31 +40,37 @@ html {
 @font-face {
   font-family: GoogleFlex-Regular;
   src: url("/assets/fonts/NotoSans-Regular.woff");
+  font-display: block;
 }
 
 @font-face {
   font-family: GoogleFlex-Medium;
   src: url("/assets/fonts/NotoSans-Medium.woff");
+  font-display: block;
 }
 
 @font-face {
   font-family: GoogleFlex-Black;
   src: url("/assets/fonts/NotoSans-Black.woff");
+  font-display: block;
 }
 
 @font-face {
   font-family: IconsOutlined;
   src: url("/assets/fonts/MaterialSymbolsRounded_28pt-Regular.woff");
+  font-display: block;
 }
 
 @font-face {
   font-family: IconsFilled;
   src: url("/assets/fonts/MaterialSymbolsRounded_Filled_28pt-Regular.woff");
+  font-display: block;
 }
 
 @font-face {
   font-family: NotoSans-Mono;
   src: url("/assets/fonts/NotoSansMono-Regular.woff");
+  font-display: block;
 }
 
 body {
