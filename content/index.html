@@ -287,7 +287,9 @@ css: [os-section]
   }
 
   #home {
-    scroll-margin-top: calc(-1 * var(--spacing-larger));
+    /* = main's padding-top minus the global scroll padding, so this lands at scroll 0
+       with the title just below the header */
+    scroll-margin-top: calc(var(--header-total-height) + var(--spacing-regular) - var(--spacing-larger));
   }
 </style>
 
