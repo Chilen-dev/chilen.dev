@@ -75,4 +75,9 @@
 <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
 <link rel="canonical" href="{{ site.url }}{{ include.content | prepend: "/" }}">
+{% if include.content == "" %}
+    <!-- Homepage only: the hero screenshot is the largest contentful paint image -->
+    <link rel="preload" href="/assets/screenshots/dark/home.webp" as="image" media="(prefers-color-scheme: dark)" fetchpriority="high">
+    <link rel="preload" href="/assets/screenshots/light/home.webp" as="image" media="(prefers-color-scheme: light)" fetchpriority="high">
+{% endif %}
 

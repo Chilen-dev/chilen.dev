@@ -1,7 +1,7 @@
 ---
 layout: main
 permalink: /
-css: [os-section]
+css: [os-section, screenshots]
 ---
 
 <div id="home">
@@ -85,8 +85,10 @@ css: [os-section]
 
   <div id="img-wrapper">
     <picture>
+      <source type="image/webp" media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/home.webp">
+      <source type="image/webp" srcset="/assets/screenshots/light/home.webp">
       <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/home.png">
-      <img alt="Screenshot of the home screen of Chilen" src="/assets/screenshots/light/home.png">
+      <img alt="Screenshot of the home screen of Chilen" src="/assets/screenshots/light/home.png" fetchpriority="high" decoding="async">
     </picture>
   </div>
 </div>
@@ -350,24 +352,30 @@ css: [os-section]
   <div id="showcase-list">
     <figure>
       <picture>
+        <source type="image/webp" media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/artist.webp">
+        <source type="image/webp" srcset="/assets/screenshots/light/artist.webp">
         <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/artist.png">
-        <img alt="Artist screen of Chilen" src="/assets/screenshots/light/artist.png">
+        <img alt="Artist screen of Chilen" src="/assets/screenshots/light/artist.png" loading="lazy" decoding="async">
       </picture>
       <figcaption>Artist</figcaption>
     </figure>
 
     <figure>
       <picture>
+        <source type="image/webp" media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/favorites.webp">
+        <source type="image/webp" srcset="/assets/screenshots/light/favorites.webp">
         <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/favorites.png">
-        <img alt="Favorites screen of Chilen" src="/assets/screenshots/light/favorites.png">
+        <img alt="Favorites screen of Chilen" src="/assets/screenshots/light/favorites.png" loading="lazy" decoding="async">
       </picture>
       <figcaption>Favorites</figcaption>
     </figure>
 
     <figure>
       <picture>
+        <source type="image/webp" media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/look-and-feel.webp">
+        <source type="image/webp" srcset="/assets/screenshots/light/look-and-feel.webp">
         <source media="(prefers-color-scheme: dark)" srcset="/assets/screenshots/dark/look-and-feel.png">
-        <img alt="Look and feel screen of Chilen" src="/assets/screenshots/light/look-and-feel.png">
+        <img alt="Look and feel screen of Chilen" src="/assets/screenshots/light/look-and-feel.png" loading="lazy" decoding="async">
       </picture>
       <figcaption>Look & Feel</figcaption>
     </figure>
