@@ -1,0 +1,34 @@
+.code-with-copy {
+  position: relative;
+}
+
+.code-with-copy button {
+  position: absolute;
+  top: var(--spacing-smaller);
+  right: var(--spacing-smaller);
+  border-radius: calc(var(--rounding-regular) - var(--spacing-small) / 2);
+  width: calc(1.5 * var(--icon-size-regular));
+  height: calc(1.5 * var(--icon-size-regular));
+}
+
+.code-with-copy button .icon {
+  font-size: var(--icon-size-regular);
+}
+
+.code-with-copy button .check-icon {
+  display: none;
+}
+
+.code-with-copy button.check .copy-icon {
+  display: none;
+}
+
+.code-with-copy button.check .check-icon {
+  display: block;
+}
+
+.code-with-copy .tooltip {
+  right: calc(var(--spacing-smaller) + 0.75 * var(--icon-size-regular));
+  bottom: calc(100% + var(--spacing-small));
+  transform: translateX(50%);
+}

@@ -1,0 +1,103 @@
+.os-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-smaller);
+  margin: var(--spacing-small);
+}
+
+.os-section .os-name {
+  margin: 0;
+  margin-bottom: var(--spacing-small);
+  font-size: var(--font-size-small);
+  font-family: GoogleFlex-Medium;
+  line-height: 1.25rem;
+  opacity: 0.9;
+}
+
+.os-section button {
+  display: flex;
+  gap: var(--spacing-regular);
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  border-radius: var(--rounding-regular);
+  padding: var(--spacing-small);
+  width: 100%;
+}
+
+.os-section button .icon {
+  font-size: var(--icon-size-large);
+}
+
+.os-section button .download-icon {
+  font-size: var(--icon-size-regular);
+  opacity: 0.9;
+}
+
+.os-section button div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: start;
+  justify-content: start;
+}
+
+.os-section button div .label {
+  margin: 0;
+  font-size: var(--font-size-small);
+  font-family: GoogleFlex-Medium;
+}
+
+.os-section button div .description {
+  margin: 0;
+  font-size: var(--font-size-smaller);
+  opacity: 0.9;
+}
+
+.os-section button:not(:disabled):hover {
+  background-color: color-mix(
+    in srgb,
+    currentColor var(--hover-state-layer-opacity),
+    transparent
+  );
+}
+
+.os-section button:not(:disabled):active {
+  background-color: color-mix(
+    in srgb,
+    currentColor var(--pressed-state-layer-opacity),
+    transparent
+  );
+}
+
+.os-section button:disabled {
+  opacity: var(--disabled-state-layer-opacity);
+}
+
+.os-section .notice {
+  margin: 0;
+  margin-top: var(--spacing-small);
+  font-size: var(--font-size-smaller);
+  opacity: 0.9;
+  text-align: center;
+}
+
+.os-section .upcoming {
+  display: flex;
+  gap: var(--spacing-small);
+  justify-content: center;
+  align-items: center;
+}
+
+.os-section .upcoming .icon {
+  font-size: var(--icon-size-small);
+  opacity: 0.9;
+}
+
+.os-section .upcoming .label {
+  margin: 0;
+  opacity: 0.9;
+  font-size: var(--font-size-small);
+}

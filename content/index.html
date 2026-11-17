@@ -1,6 +1,7 @@
 ---
 layout: main
 permalink: /
+css: [os-section]
 ---
 
 <div id="home">
@@ -88,16 +89,14 @@ permalink: /
     --section-between-spacing: calc(2.5 * var(--spacing-larger));
 
     --header-nav-height: 60px;
-    --header-breathing-room: 1rem;
     --header-total-height: calc(var(--spacing-regular) + var(--header-nav-height));
-    --header-scroll-margin: calc(var(--header-total-height) + var(--header-breathing-room));
+    --header-scroll-margin: var(--header-total-height);
   }
 
   .head {
     margin-top: var(--section-between-spacing);
     display: flex;
     flex-direction: column;
-    margin-botto: var(--spacing-large);
   }
 
   .kicker {
@@ -276,8 +275,12 @@ permalink: /
     gap: 4px;
   }
 
-  section[id], #home {
+  section[id] {
     scroll-margin-top: var(--header-scroll-margin);
+  }
+
+  #home {
+    scroll-margin-top: calc(-1 * var(--spacing-larger));
   }
 </style>
 

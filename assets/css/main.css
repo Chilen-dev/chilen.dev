@@ -17,6 +17,7 @@
   --icon-size-small: 1.1rem;
   --icon-size-regular: 1.5rem;
   --icon-size-large: 1.7rem;
+  --icon-size-larger: 2.3rem;
 
   --pressed-state-layer-opacity: 10%;
   --focus-state-layer-opacity: 10%;
@@ -33,6 +34,7 @@
 html {
   scroll-behavior: smooth;
   overflow-y: scroll;
+  scroll-padding-top: var(--spacing-larger);
 }
 
 @font-face {
@@ -58,6 +60,11 @@ html {
 @font-face {
   font-family: IconsFilled;
   src: url("/assets/fonts/MaterialSymbolsRounded_Filled_28pt-Regular.woff");
+}
+
+@font-face {
+  font-family: NotoSans-Mono;
+  src: url("/assets/fonts/NotoSansMono-Regular.woff");
 }
 
 body {
@@ -90,8 +97,12 @@ main {
   background: var(--on-surface);
 }
 
-a:visited {
-  color: var(--tertiary);
+a, a code {
+  color: var(--primary);
+}
+
+a:visited, a:visited code {
+    color: var(--tertiary);
 }
 
 h1 {
@@ -114,12 +125,20 @@ h1 {
   font-family: IconsFilled;
 }
 
+.icon.outlined {
+  font-family: IconsOutlined;
+}
+
 button {
   display: flex;
   align-items: center;
   cursor: pointer;
   transition: background-color 100ms var(--easing-standard);
   border: 0px;
+}
+
+button:disabled {
+  cursor: default;
 }
 
 button .icon {
@@ -146,7 +165,7 @@ button.filled-primary {
   color: var(--on-primary);
 }
 
-button.filled-primary:hover {
+button.filled-primary:not(:disabled):hover {
   background-color: color-mix(
     in srgb,
     var(--on-primary) var(--hover-state-layer-opacity),
@@ -154,11 +173,19 @@ button.filled-primary:hover {
   );
 }
 
-button.filled-primary:active {
+button.filled-primary:not(:disabled):active {
   background-color: color-mix(
     in srgb,
     var(--on-primary) var(--pressed-state-layer-opacity),
     var(--primary)
+  );
+}
+
+button.filled-primary:disabled {
+  background-color: color-mix(
+    in srgb,
+    var(--primary) calc(100% - var(--disabled-state-layer-opacity)),
+    transparent
   );
 }
 
@@ -167,7 +194,7 @@ button.tonal-primary {
   color: var(--on-primary-container);
 }
 
-button.tonal-primary:hover {
+button.tonal-primary:not(:disabled):hover {
   background-color: color-mix(
     in srgb,
     var(--on-primary-container) var(--hover-state-layer-opacity),
@@ -175,11 +202,48 @@ button.tonal-primary:hover {
   );
 }
 
-button.tonal-primary:active {
+button.tonal-primary:not(:disabled):active {
   background-color: color-mix(
     in srgb,
     var(--on-primary-container) var(--pressed-state-layer-opacity),
     var(--primary-container)
+  );
+}
+
+button.tonal-primary:disabled {
+  background-color: color-mix(
+    in srgb,
+    var(--primary-container) calc(100% - var(--disabled-state-layer-opacity)),
+    transparent
+  );
+}
+
+button.tonal-secondary {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+button.tonal-secondary:not(:disabled):hover {
+  background-color: color-mix(
+    in srgb,
+    var(--on-secondary-container) var(--hover-state-layer-opacity),
+    var(--secondary-container)
+  );
+}
+
+button.tonal-secondary:not(:disabled):active {
+  background-color: color-mix(
+    in srgb,
+    var(--on-secondary-container) var(--pressed-state-layer-opacity),
+    var(--secondary-container)
+  );
+}
+
+button.tonal-secondary:disabled {
+  background-color: color-mix(
+    in srgb,
+    var(--secondary-container) calc(100% - var(--disabled-state-layer-opacity)),
+    transparent
   );
 }
 
@@ -192,4 +256,32 @@ hr {
   height: 1px;
   background-color: var(--outline-variant);
   border: 0px;
+}
+
+code {
+  padding: var(--spacing-smaller);
+  border-radius: var(--rounding-small);
+  background-color: var(--surface-container-low);
+  color: var(--on-surface);
+  font-family: NotoSans-Mono;
+  font-size: var(--font-size-smaller);
+}
+
+pre {
+  margin: 0;
+  padding: var(--spacing-regular) calc(var(--spacing-larger) + var(--spacing-regular)) var(--spacing-regular) var(--spacing-regular);
+  background-color: var(--surface-container-low);
+  border-radius: var(--rounding-regular);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  line-height: 1.5;
+  color: var(--on-surface);
+  font-family: NotoSans-Mono;
+  font-size: var(--font-size-small);
 }

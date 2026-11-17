@@ -1,0 +1,12 @@
+<div class="code-with-copy {{ include.class }}">
+  {% include widgets/tooltip.html content="Copied!" %}
+  <pre><code>{{ include.content }}</code></pre>
+  <button
+    class="copy-button tonal-secondary"
+    aria-label="Copy code"
+    data-key="{{ include.content | escape }}"
+  >
+    <p class="icon outlined copy-icon">content_copy</p>
+    <p class="icon outlined check-icon">check</p>
+  </button>
+</div>

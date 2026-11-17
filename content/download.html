@@ -1,0 +1,386 @@
+---
+permalink: /download
+title: Download Chilen
+layout: subpage
+css: [code-with-copy, tooltip, os-section]
+---
+
+<style type="text/css" media="screen">
+  #downloads .head {
+    margin-top: calc(-1 * var(--spacing-large));
+  }
+
+  #downloads h2 {
+    margin: 0;
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-smaller);
+  }
+
+  #downloads .head .button-row {
+    margin-top: var(--spacing-regular);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+  }
+
+  #downloads .kicker {
+    font-family: GoogleFlex-Medium;
+    font-size: var(--font-size-small);
+    color: var(--tertiary);
+  }
+
+  #downloads .head > p {
+    color: var(--on-surface-variant);
+    font-size: var(--font-size-small);
+  }
+
+  #downloads .cards {
+    margin-top: var(--spacing-large);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+  }
+
+  #downloads .download-card {
+    --card-container: var(--primary-container);
+    --card-on-container: var(--on-primary-container);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    gap: var(--spacing-larger);
+    padding: var(--spacing-large);
+    background-color: var(--card-container);
+    color: var(--card-on-container);
+    border-radius: var(--rounding-larger);
+    border-bottom-left-radius: var(--rounding-regular);
+  }
+
+  #downloads .download-card.secondary {
+    --card-container: var(--secondary-container);
+    --card-on-container: var(--on-secondary-container);
+  }
+
+  #downloads .download-card.tertiary {
+    --card-container: var(--tertiary-container);
+    --card-on-container: var(--on-tertiary-container);
+  }
+
+  #downloads .download-card #left,
+  #downloads .download-card #right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #downloads .download-card #right {
+    width: 100%;
+  }
+
+  #downloads .download-card .heading-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    margin-bottom: var(--spacing-smaller);
+  }
+
+  #downloads .download-card .heading-row h2 {
+    margin: 0;
+  }
+
+  #downloads .download-card #release-date {
+    margin: 0;
+    font-size: var(--font-size-small);
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+
+  #downloads .download-card .version {
+    margin: 0;
+    padding: var(--spacing-smaller) var(--spacing-small);
+    border-radius: 9999px;
+    font-size: var(--font-size-smaller);
+    line-height: 1rem;
+    opacity: 0.9;
+    margin-left: calc(-1 * var(--spacing-small));
+    transform: translateY(-0.35rem);
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+  }
+
+  #downloads .download-card.primary .version {
+    background-color: var(--tertiary-container);
+    color: var(--on-tertiary-container);
+  }
+
+  #downloads .download-card.secondary .version {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+  }
+
+  #downloads .download-card.tertiary .version {
+    background-color: var(--secondary-container);
+    color: var(--on-secondary-container);
+  }
+
+  #downloads .download-card .cta {
+    width: fit-content;
+    white-space: nowrap;
+    margin-top: var(--spacing-large);
+    background-color: var(--card-on-container);
+    color: var(--card-container);
+  }
+
+  #downloads .download-card .cta:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--card-container) var(--hover-state-layer-opacity),
+      var(--card-on-container)
+    );
+  }
+
+  #downloads .download-card .cta:active {
+    background-color: color-mix(
+      in srgb,
+      var(--card-container) var(--pressed-state-layer-opacity),
+      var(--card-on-container)
+    );
+  }
+
+  #downloads .download-card .os-section {
+    flex: 1 0 auto;
+    justify-content: center;
+  }
+
+  #downloads .download-card .decorative-shape {
+    position: absolute;
+    left: -4rem;
+    bottom: -8rem;
+    width: 22rem;
+    height: 22rem;
+    opacity: 0.15;
+    fill: var(--card-on-container);
+    animation: card-spin 60s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes card-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  #downloads .installation {
+    margin-top: calc(2 * var(--spacing-larger) - var(--spacing-large));
+  }
+
+  #downloads .installation .caution {
+    margin-top: var(--spacing-large);
+    display: flex;
+    gap: var(--spacing-regular);
+    padding: var(--spacing-regular);
+    border-radius: var(--rounding-regular);
+    background-color: var(--error-container);
+    color: var(--on-error-container);
+  }
+
+  #downloads .installation .caution .icon {
+    font-size: var(--icon-size-larger);
+    margin: 0;
+  }
+
+  #downloads .installation .caution .label {
+    margin: 0 0 var(--spacing-smaller);
+    font-family: GoogleFlex-Medium;
+    font-size: var(--font-size-small);
+  }
+
+  #downloads .installation .caution .description {
+    margin: 0;
+    font-size: var(--font-size-small);
+    opacity: 0.95;
+  }
+
+  #downloads .installation .platform {
+    margin-top: var(--spacing-large);
+  }
+
+  #downloads .installation .platform h3 {
+    margin: 0 0 var(--spacing-small);
+    font-family: GoogleFlex-Medium;
+    color: var(--on-surface);
+  }
+
+  #downloads .installation > p {
+    margin: 0 0 var(--spacing-small);
+    color: var(--on-surface-variant);
+    font-size: var(--font-size-small);
+  }
+
+  @media (max-width: 890px) {
+    #downloads .download-card {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    #downloads .download-card #left {
+      display: contents;
+    }
+
+    #downloads .download-card #left .heading-row {
+      order: 0;
+    }
+
+    #downloads .download-card #left button {
+      align-self: center;
+    }
+
+    #downloads .download-card #right {
+      order: 2;
+      width: 100%;
+    }
+
+    #downloads .download-card #left .cta {
+      order: 3;
+      margin-top: var(--spacing-large);
+    }
+  }
+</style>
+
+<div id="downloads">
+  <div class="head">
+    <span class="kicker">DOWNLOADS</span>
+    <h2>Get Chilen for your desktop</h2>
+    <p>Pick your platform below. Linux builds are ready to go, Windows and macOS are on the way.</p>
+
+    <div class="button-row">
+      <button
+        onclick="location.href='{{ site.project_repo_url }}/releases'"
+        class="medium rounded filled-primary"
+      >
+        <p class="icon filled">history</p>
+        View all releases
+      </button>
+      <button
+        onclick="location.href='/'"
+        class="medium rounded tonal-primary"
+      >
+        <p class="icon filled">home</p>
+        Back to Home
+      </button>
+    </div>
+  </div>
+
+  <div class="cards">
+    <!-- TODO: Releases should be fetched from GitHub, currently placeholders -->
+    <section class="download-card primary" id="linux">
+      <div id="left">
+        <div class="heading-row">
+          <h2>Linux</h2>
+          <p class="version">v0.1.0</p>
+        </div>
+        <p id="release-date">Released 1 December 2026</p>
+      </div>
+      <div id="right">
+        <div class="os-section">
+          <button disabled>
+            <p class="icon filled">box</p>
+            <div>
+              <p class="label">Flatpak</p>
+              <p class="description">Recommended for most Linux distributions</p>
+            </div>
+            <p class="download-icon icon filled">download</p>
+          </button>
+          <button disabled>
+            <p class="icon filled">manufacturing</p>
+            <div>
+              <p class="label">AppImage</p>
+              <p class="description">Portable single file, no installation needed</p>
+            </div>
+            <p class="download-icon icon filled">download</p>
+          </button>
+          <p class="notice">Flatpak and AppImage packages aren't available yet. In the meantime, you can <a href="#installation">install Chilen from source</a>.</p>
+        </div>
+      </div>
+      <div class="decorative-shape">
+        {% include shapes/very_sunny.svg %}
+      </div>
+    </section>
+
+    <section class="download-card secondary" id="macos">
+      <div id="left">
+        <div class="heading-row">
+          <h2>macOS</h2>
+        </div>
+        <p id="release-date">To be announced!</p>
+      </div>
+      <div id="right">
+        <div class="os-section">
+          <div class="upcoming">
+            <p class="icon filled">upcoming</p>
+            <p class="label">Coming soon!</p>
+          </div>
+        </div>
+      </div>
+      <div class="decorative-shape">
+        {% include shapes/very_sunny.svg %}
+      </div>
+    </section>
+
+    <section class="download-card tertiary" id="windows">
+      <div id="left">
+        <div class="heading-row">
+          <h2>Windows</h2>
+        </div>
+        <p id="release-date">To be announced!</p>
+      </div>
+      <div id="right">
+        <div class="os-section">
+          <div class="upcoming">
+            <p class="icon filled">upcoming</p>
+            <p class="label">Coming soon!</p>
+          </div>
+        </div>
+      </div>
+      <div class="decorative-shape">
+        {% include shapes/very_sunny.svg %}
+      </div>
+    </section>
+  </div>
+
+  <section class="installation" id="installation">
+    <span class="kicker" id="manual">MANUAL INSTALLATION</span>
+    <h2>Installation</h2>
+    <p>You can either build Chilen from source or use one of the official installation methods. If you wish to create a community build, <a href="{{ site.dev_contact_url }}">contact me</a> and I will happily list it here in a separate section!</p>
+
+    <div class="caution">
+      <p class="icon filled">warning</p>
+      <div>
+        <p class="label">Only git builds are available at this time</p>
+        <p class="description">Those builds are meant primarily for development and testing purposes. Daily driving Chilen as your music player is not recommended until a tagged release is published. It won't do anything destructive, but do expect issues!</p>
+      </div>
+    </div>
+
+    <div class="platform" id="fedora">
+      <h3>Fedora</h3>
+      <p>Enable the <a href="https://copr.fedorainfracloud.org/coprs/tpaau/chilen/"><code>tpaau/chilen</code></a> Copr repo:</p>
+      {% include widgets/code-with-copy.html content="dnf copr enable tpaau/chilen" %}
+      <p>Then install <code>chilen-git</code> on regular Fedora:</p>
+      {% include widgets/code-with-copy.html content="dnf install chilen-git" %}
+      <p>Or on Fedora Atomic:</p>
+      {% include widgets/code-with-copy.html content="rpm-stree install chilen-git" %}
+    </div>
+
+    <div class="platform" id="arch">
+      <h3>Arch Linux</h3>
+      {% capture arch_git %}git clone https://github.com/tpaau/chilen-git-src-pkgbuild
+cd chilen-git-src-pkgbuild
+makepkg -si{% endcapture %}
+      {% include widgets/code-with-copy.html content=arch_git %}
+      <p>Or install the community build via an AUR helper:</p>
+      {% include widgets/code-with-copy.html content="yay -Syu chilen-git-src" %}
+    </div>
+  </section>
+</div>

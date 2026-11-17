@@ -1,0 +1,22 @@
+.tooltip {
+  position: absolute;
+  margin: 0;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-small);
+  background-color: var(--inverse-surface);
+  color: var(--inverse-on-surface);
+  border-radius: var(--rounding-small);
+  font-family: GoogleFlex-Regular;
+  font-size: var(--font-size-smaller);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 75ms var(--easing-emphasized-accelerate);
+  pointer-events: none;
+}
+
+.tooltip.show {
+  opacity: 1;
+  transition: opacity 150ms var(--easing-emphasized-decelerate);
+}

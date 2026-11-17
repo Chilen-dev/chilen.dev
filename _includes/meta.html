@@ -12,6 +12,12 @@
 <link rel="stylesheet" href="/assets/css/theme-light.css" media="(prefers-color-scheme: light)">
 <link rel="stylesheet" href="/assets/css/theme-dark.css" media="(prefers-color-scheme: dark)">
 <link rel="stylesheet" href="/assets/css/main.css">
+{% if page.css %}
+    {% for css in page.css %}
+        <link rel="stylesheet" href="/assets/css/{{ css }}.css">
+    {% endfor %}
+{% endif %}
+<script src="/assets/js/code-with-copy.js" defer></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
